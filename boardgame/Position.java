@@ -1,4 +1,5 @@
 package project.chess.boardgame;
+// Pacote correspondente à camada de tabuleiro
 
 public class Position {
 
@@ -26,6 +27,11 @@ public class Position {
 		this.column = column;
 	}
 	
+	/*
+	 * Classe Object é uma superclasse de todas as classes.
+	 * Override aplica o conceito de sobreposição pois sobreescrevemos o método
+	 * toString() que pertence à classe Object.
+	 */
 	@Override
 	public String toString() {
 		return row + ", " + column;
