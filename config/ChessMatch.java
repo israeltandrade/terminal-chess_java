@@ -1,7 +1,6 @@
 package project.chess.config;
 
 import project.chess.boardgame.Board;
-import project.chess.boardgame.Position;
 import project.chess.config.pieces.King;
 import project.chess.config.pieces.Rook;
 
@@ -37,10 +36,15 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	// Método passa posição em coodenada de xadrez e converte para matriz:
+	private void placeNewPiece(char column, int row, ChessPiece piece) {
+		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+	}
+	
 	private void initialSetup() {
-		board.placePiece(new Rook(board, Color.WHITE), new Position(2, 1));
-		board.placePiece(new King(board, Color.BLACK), new Position(0, 4));
-		board.placePiece(new King(board, Color.WHITE), new Position(7, 4));
+		placeNewPiece('b', 6, new Rook(board, Color.WHITE));
+		placeNewPiece('e', 8, new King(board, Color.BLACK));
+		placeNewPiece('e', 1, new King(board, Color.WHITE));
 	}
 	
 }
