@@ -30,11 +30,16 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
-			/* 
-			 * Exemplo de String a ser recebida: a1
-			 * Variável s armazena o caractere 'a'
+			/*
+			 * Exemplo de String a ser recebida: a1 Variável s armazena o caractere 'a'
 			 */
 			String s = sc.nextLine();
 			char column = s.charAt(0);
