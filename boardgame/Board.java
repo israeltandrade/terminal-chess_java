@@ -65,6 +65,23 @@ public class Board {
 		piece.position = position;
 	}
 	
+	public Piece removePiece(Position position) {
+		// Primeira checagem => posição existe no tabuleiro:
+		if (!positionExists(position)) {
+			throw new BoardException("Position not on the board");
+		}
+		// Segunda checagem => peça está na posição indicada:
+		if (piece(position) == null) {
+			return null;
+		}
+		// Objeto instanciado Piece auxiliar:
+		Piece aux = piece(position);
+		// Recebe nulo para posição:
+		aux.position = null;
+		// Matriz de peças recebe valor nulo na posição indicada: 
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
 	// Método auxiliar ao seguinte, que também serve para consultas:
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
