@@ -2,6 +2,7 @@ package project.chess.config;
 
 import project.chess.boardgame.Board;
 import project.chess.boardgame.Piece;
+import project.chess.boardgame.Position;
 
 /* 
  * Subclasse da classe Piece, que é abstrata. Como ela ainda é genérica demais para
@@ -25,6 +26,11 @@ public abstract class ChessPiece extends Piece {
 	// A cor de uma peça não pode ser modificada, portanto apenas getter:
 	public Color getColor() {
 		return color;
+	}
+	
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece p = (ChessPiece)getBoard().piece(position);
+		return p != null && p.getColor() != color;
 	}
 	
 }
