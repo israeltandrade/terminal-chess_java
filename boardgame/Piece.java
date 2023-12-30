@@ -1,6 +1,6 @@
 package project.chess.boardgame;
 
-public class Piece {
+public abstract class Piece {
 
 	/*
 	 * A posição aqui tem o modificador de acesso "protected" porque se trata de uma
@@ -35,6 +35,28 @@ public class Piece {
 		return board;
 	}
 	
+	public abstract boolean[][] possibleMoves();
 	
+	/*
+	 * Método apelidado "Hook Method", faz um gancho com a subclasse.
+	 * Um método concreto utilizando um método abstrato.
+	 * Existe um padrão de projeto chamado "Template Method" em que pode-se fornecer uma
+	 * implementação padrão de um método que contém um método abstrato:
+	 */
+	public boolean possibleMove(Position position) {
+		return possibleMoves()[position.getRow()][position.getColumn()];
+	}
+	
+	public boolean isThereAnyPossibleMove() {
+		boolean[][] mat = possibleMoves();
+		for (int i=0; i<mat.length; i++) {
+			for (int j=0; j<mat.length; j++) {
+				if (mat[i][j]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 }

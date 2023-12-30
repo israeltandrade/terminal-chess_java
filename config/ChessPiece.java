@@ -3,8 +3,13 @@ package project.chess.config;
 import project.chess.boardgame.Board;
 import project.chess.boardgame.Piece;
 
-// Subclasse da classe Piece:
-public class ChessPiece extends Piece {
+/* 
+ * Subclasse da classe Piece, que é abstrata. Como ela ainda é genérica demais para
+ * implementar os métodos da classe pai (o que é uma obrigatoriedade para classes abstratas),
+ * ela também tem de ser classificada como abstrata e relegar a implementação para as classes
+ * filhas:
+ */
+public abstract class ChessPiece extends Piece {
 
 	private Color color;
 
