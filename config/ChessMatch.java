@@ -1,5 +1,8 @@
 package project.chess.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import project.chess.boardgame.Board;
 import project.chess.boardgame.Piece;
 import project.chess.boardgame.Position;
@@ -14,6 +17,9 @@ public class ChessMatch {
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
+	
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
 	
 	// Quem deveria "conhecer" a dimensão do tabuleiro seria a classe ChessMatch: 
 	public ChessMatch() {
@@ -71,6 +77,12 @@ public class ChessMatch {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
+		
+		if (capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+		}
+		
 		return capturedPiece;
 	}
 	
@@ -100,6 +112,7 @@ public class ChessMatch {
 	// Método passa posição em coodenada de xadrez e converte para matriz:
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		piecesOnTheBoard.add(piece);
 	}
 	
 	private void initialSetup() {
