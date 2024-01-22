@@ -13,6 +13,8 @@ import project.chess.boardgame.Position;
 public abstract class ChessPiece extends Piece {
 
 	private Color color;
+	// Atributo começa em zero, portanto não precisa atribuir no construtor:
+	private int moveCount;
 
 	/*
 	 * Como a classe extende outra e a classe que ela herda tem um construtor. É
@@ -26,6 +28,18 @@ public abstract class ChessPiece extends Piece {
 	// A cor de uma peça não pode ser modificada, portanto apenas getter:
 	public Color getColor() {
 		return color;
+	}
+	
+	public int getMoveCount() {
+		return moveCount;
+	}
+	
+	public void increaseMoveCount() {
+		moveCount++;
+	}
+
+	public void decreaseMoveCount() {
+		moveCount--;
 	}
 	
 	public ChessPosition getChessPosition() {

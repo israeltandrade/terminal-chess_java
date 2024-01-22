@@ -99,7 +99,9 @@ public class ChessMatch {
 	}
 	
 	private Piece makeMove(Position source, Position target) {
-		Piece p = board.removePiece(source);
+		// Downcast permite acessar classe com mais métodos:
+		ChessPiece p = (ChessPiece)board.removePiece(source);
+		p.increaseMoveCount();
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
 		
@@ -113,8 +115,10 @@ public class ChessMatch {
 	
 	// Método para reverter o que foi feito em makeMove():
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
+		// Downcast permite acessar classe com mais métodos:
 		// Remoção da peça da posição de destino e colocação na origem:
-		Piece p = board.removePiece(target);
+		ChessPiece p = (ChessPiece)board.removePiece(target);
+		p.decreaseMoveCount();
 		board.placePiece(p, source);
 		
 		// Reversão de captura:
